@@ -1,6 +1,18 @@
 import { Set_Gradient_Flutuation_Animation, Unset_Gradient_Flutuation_Animation } from "../Non_Routable_Components/Animations";
 import "../Styles/authentication_page_styles.css";
 
+function Email_Input_Changed() {
+    
+}
+
+function Password_Input_Changed() {
+    
+}
+
+function Authenticate_Admin() {
+
+}
+
 export function Render_Authentication_Page() {
     async function Interval_Setup()
     {
@@ -15,15 +27,15 @@ export function Render_Authentication_Page() {
 
         <div className="auth_field_div">
           <p className="auth_field_subtitle">Email</p>
-          <input className="auth_input" />
+          <input className="auth_input" onChange={()=>{Email_Input_Changed();}}/>
         </div>
 
         <div className="auth_field_div">
           <p className="auth_field_subtitle">Password</p>
-          <input className="auth_input" />
+          <input type="password" className="auth_input" onChange={()=>{Password_Input_Changed();}}/>
         </div>
 
-        <button className="auth_button">Ok</button>
+        <button className="auth_button" onClick={()=>{Authenticate_Admin();}}>Ok</button>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ function Gradient_Flutuation_Animation(element_id, min_offset, max_offset, rgb1,
  
     console.log(rgb_string_1)
     element.style.background = "linear-gradient(to left, " + rgb_string_1 + current_gradient_value + "%, " + rgb_string_2 + " 80%)";
+    element.style.background = "-moz-linear-gradient(to left, " + rgb_string_1 + current_gradient_value + "%, " + rgb_string_2 + " 80%)";
     
     console.log(animations_values[element_id]);
 
