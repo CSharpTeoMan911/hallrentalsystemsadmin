@@ -15,16 +15,17 @@ import { useEffect } from "react";
 
 function App() {
   let [authState, setAuthState] = useState();
-  useEffect((list) => {
+  useEffect(() => {
     if (Verify_If_User_Is_Logged_In() !== true) {
       if (window.location.pathname !== "/authentication") {
+        window.location.pathname = "/authentication";
         setAuthState(true);
       } else {
         setAuthState(false);
       }
-    }
-    list = true;
+    }               
   }, []);
+  
 
   async function Interval_Setup()
   {
@@ -33,7 +34,6 @@ function App() {
   }
 
   Interval_Setup();
-
   return (
     <>
       <Render_Nav_Bar theme={"light"} visible={authState}/>
