@@ -1,0 +1,84 @@
+div.authentication_page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+div.login_form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background: linear-gradient(to right, rgb(68, 68, 68), rgb(199, 199, 199));
+    background: -moz-linear-gradient(to right, rgb(68, 68, 68), rgb(199, 199, 199));
+    border-radius: 10px;
+    padding: calc(10px + 2vw);
+    width: fit-content;
+    height: fit-content;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div.auth_field_div {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: calc(10px + 1vw);
+}
+
+
+h1.authentication_title{
+    align-self: center;
+    height: calc(40px + 2vw);
+    font-size: calc(20px + 2vw);
+    background-image: linear-gradient(to right, rgb(75, 74, 74), rgb(0, 0, 0));
+    background-image: -moz-linear-gradient(to right, rgb(68, 68, 68), rgb(199, 199, 199));
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+p.auth_field_subtitle {
+    font-size: calc(6px + 1vw);
+    font-weight: 500;
+    align-self: flex-start;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: calc(4px + 1vw);
+    color: rgb(0, 0, 0);
+}
+
+input.auth_input {
+    width: calc(50px + 20vw);
+    font-size: calc(5px + 1vw);
+    border-radius: calc(8px + 1px);
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(75, 74, 74));
+    color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+button.auth_button {
+    align-self: center;
+    margin-top: calc(10px + 2vw);
+    width: fit-content;
+    border-radius: calc(10px + 1px);
+    padding-left: calc(10px + 2vw);
+    padding-right: calc(10px + 2vw);
+    margin-top: calc(20px + 3vw);
+    font-size: calc(10px + 1vw);
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(75, 74, 74));
+    color: rgb(206, 206, 206);
+}
+
+
+button.auth_button:hover {
+    color: rgb(255, 255, 255);
+}
+
+
+

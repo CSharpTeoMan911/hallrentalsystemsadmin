@@ -1,0 +1,4 @@
+body.body_style {
+    background: linear-gradient(to left, rgb(100, 100, 100) 20%,  rgb(170, 170, 170) 80%);
+    background: -moz-linear-gradient(to left, #535353 20%, #cfcfcf 80%);
+}
