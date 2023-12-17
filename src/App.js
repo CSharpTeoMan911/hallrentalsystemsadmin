@@ -1,17 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Render_Home_Page } from "./Pages/Halls_Admin_Home";
-import { Render_Authentication_Page } from "./Pages/Halls_Admin_Authentication";
 import { Render_Nav_Bar } from "./Non_Routable_Components/Bootstrap_Elements";
+import Render_Background_Image from "./Non_Routable_Components/Background_Image"
+import { Render_Authentication_Page } from "./Pages/Halls_Admin_Authentication";
+import { Render_Home_Page } from "./Pages/Halls_Admin_Home";
+import { Render_Pictures_Page } from "./Pages/Halls_Admin_Pictures"
+import { Render_Logs_Page } from "./Pages/Halls_Admin_Logs"
+
 import {
   Clear_All_Intervals,
   Set_Gradient_Flutuation_Animation,
 } from "./Non_Routable_Components/Animations";
-import "./Styles/main_style.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import { useEffect } from "react";
+import "./Styles/main_style.css";
+
+
+
 
 function App() {
   const [authState, setAuthState] = useState();
@@ -36,7 +42,7 @@ function App() {
       1,
       50,
       { r: 100, g: 100, b: 100 },
-      { r: 170, g: 170, b: 170 },
+      { r: 196, g: 194, b: 194 },
       60
     );
   }
@@ -44,16 +50,19 @@ function App() {
   Interval_Setup();
   return (
     <>
+      <Render_Background_Image is_auth={authState} />
       <Render_Nav_Bar theme={"light"} visible={authState} />
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" Component={Render_Home_Page} />
           <Route
             exact
             path="/authentication"
             Component={Render_Authentication_Page}
           />
-        </Routes>
+          <Route exact path="/" Component={Render_Home_Page} />
+          <Route exact path="/pictures" Component={Render_Pictures_Page} />
+          <Route exact path="/logs" Component={Render_Logs_Page} />
+          </Routes>
       </BrowserRouter>
     </>
   );

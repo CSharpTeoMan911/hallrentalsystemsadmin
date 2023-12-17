@@ -1,4 +1,26 @@
 body.body_style {
-    background: linear-gradient(to left, rgb(100, 100, 100) 20%,  rgb(170, 170, 170) 80%);
+    background: linear-gradient(to left, rgb(100, 100, 100) 20%,  rgb(196, 194, 194) 80%);
     background: -moz-linear-gradient(to left, #535353 20%, #cfcfcf 80%);
+}
+
+div.main_background_image_style {
+    position: absolute;
+    z-index: 0;
+    background-image: url("https://images.pixexid.com/a-futuristic-city-designed-using-gothic-architecture-k4zwosr1.jpeg");
+    image-rendering: optimizeQuality;
+    opacity: 0.25;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+div.auth_background_image_style {
+    position: absolute;
+    z-index: 0;
+    background-image: url("https://ik.imagekit.io/freeflo/production/a18246a8-8491-491b-963d-fad1f060471b.png?tr=w-3840,q-75&alt=media&pr-true");
+    image-rendering: optimizeQuality;
+    opacity: 0.25;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }

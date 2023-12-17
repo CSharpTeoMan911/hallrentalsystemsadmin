@@ -1,5 +1,4 @@
-import { DeAuthenticate_User } from "./Firebase/Firebase_Auth"
-
+import { DeAuthenticate_User } from "./Firebase/Firebase_Auth";
 
 export function Render_Nav_Bar({ theme, visible }) {
   if (visible === true) {
@@ -23,15 +22,23 @@ export function Render_Nav_Bar({ theme, visible }) {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
               <a className="nav-link active" href="#">
-                Home <span className="sr-only">(current)</span>
+                Halls <span className="sr-only">(current)</span>
               </a>
               <a className="nav-link" href="#">
-                Features
+                Pictures
               </a>
               <a className="nav-link" href="#">
-                Pricing
+                Logs
               </a>
-              <a className="nav-link" href="/" onClick={async()=>{await DeAuthenticate_User();}}>Logout</a>
+              <a
+                className="nav-link"
+                href="/"
+                onClick={async () => {
+                  await DeAuthenticate_User();
+                }}
+              >
+                Logout
+              </a>
             </div>
           </div>
         </nav>
@@ -39,7 +46,7 @@ export function Render_Nav_Bar({ theme, visible }) {
     } else if (theme === "light") {
       return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             HallRentals
           </a>
           <button
@@ -55,16 +62,24 @@ export function Render_Nav_Bar({ theme, visible }) {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <a className="nav-link active" href="#">
-                Home <span className="sr-only">(current)</span>
+              <a className="nav-link" href="/">
+                Halls <span className="sr-only">(current)</span>
               </a>
               <a className="nav-link" href="#">
-                Features
+                Pictures
               </a>
               <a className="nav-link" href="#">
-                Pricing
+                Logs
               </a>
-              <a className="nav-link" href="/" onClick={async()=>{await DeAuthenticate_User();}}>Logout</a>
+              <a
+                className="nav-link active"
+                href="/"
+                onClick={async () => {
+                  await DeAuthenticate_User();
+                }}
+              >
+                Logout
+              </a>
             </div>
           </div>
         </nav>

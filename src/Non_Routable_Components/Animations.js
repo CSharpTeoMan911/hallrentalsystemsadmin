@@ -46,7 +46,6 @@ export function Unset_Gradient_Flutuation_Animation(element_id) {
 
 export function Clear_All_Intervals() {
     Object.keys(animations).forEach(async(element) => {
-        console.log(element);
         clearInterval(animations[element]); 
         delete animations[element];
     });
