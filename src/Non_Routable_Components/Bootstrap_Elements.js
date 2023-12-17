@@ -1,10 +1,13 @@
+import { DeAuthenticate_User } from "./Firebase/Firebase_Auth"
+
+
 export function Render_Nav_Bar({ theme, visible }) {
   if (visible === true) {
     if (theme === "dark") {
       return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <a className="navbar-brand" href="#">
-            Navbar
+            HallRentals
           </a>
           <button
             className="navbar-toggler"
@@ -28,7 +31,7 @@ export function Render_Nav_Bar({ theme, visible }) {
               <a className="nav-link" href="#">
                 Pricing
               </a>
-              <a className="nav-link disabled">Disabled</a>
+              <a className="nav-link" href="/" onClick={async()=>{await DeAuthenticate_User();}}>Logout</a>
             </div>
           </div>
         </nav>
@@ -37,7 +40,7 @@ export function Render_Nav_Bar({ theme, visible }) {
       return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">
-            Navbar
+            HallRentals
           </a>
           <button
             className="navbar-toggler"
@@ -61,7 +64,7 @@ export function Render_Nav_Bar({ theme, visible }) {
               <a className="nav-link" href="#">
                 Pricing
               </a>
-              <a className="nav-link disabled">Disabled</a>
+              <a className="nav-link" href="/" onClick={async()=>{await DeAuthenticate_User();}}>Logout</a>
             </div>
           </div>
         </nav>
@@ -82,7 +85,9 @@ export function Render_Nav_Bar({ theme, visible }) {
       );
     }
   } else if (visible === false) {
-    // RETURN NO NAVBAR COMPONENT
+    ////////////////////////////////
+    // RETURN NO NAVBAR COMPONENT //
+    ////////////////////////////////
   } else {
     return (
       <div
