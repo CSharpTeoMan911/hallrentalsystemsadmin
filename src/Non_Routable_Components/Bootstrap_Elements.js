@@ -129,7 +129,7 @@ export function Render_Page_Navbar(proprieties){
     className="navbar navbar-expand-lg navbar-dark bg-dark page_navbar"
     style={{ position: "sticky", left: 0, top: 0 }}
   >
-    <button className="navbar-brand action_button"> Pictures + </button>
+    <button className="navbar-brand action_button"> Pictures&nbsp;&nbsp;+ </button>
     <button
       className="navbar-toggler"
       type="button"
