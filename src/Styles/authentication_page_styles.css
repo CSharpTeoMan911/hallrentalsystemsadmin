@@ -54,7 +54,7 @@ p.auth_field_subtitle {
 input.auth_input {
     width: calc(50px + 20vw);
     font-size: calc(5px + 1vw);
-    border-radius: calc(8px + 1px);
+    border-radius: calc(2px + 0.5vw);
     background: linear-gradient(to right, rgb(0, 0, 0), rgb(75, 74, 74));
     color: white;
     padding: 0px;

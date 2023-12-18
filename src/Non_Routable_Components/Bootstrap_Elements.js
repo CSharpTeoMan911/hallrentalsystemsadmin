@@ -4,7 +4,7 @@ export function Render_Nav_Bar({ theme, visible }) {
   if (visible === true) {
     if (theme === "dark") {
       return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav id="app_navbar" className="navbar navbar-expand-lg navbar-dark bg-dark">
           <a className="navbar-brand" href="#">
             HallRentals
           </a>
@@ -24,10 +24,10 @@ export function Render_Nav_Bar({ theme, visible }) {
               <a className="nav-link active" href="#">
                 Halls <span className="sr-only">(current)</span>
               </a>
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/pictures">
                 Pictures
               </a>
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/logs">
                 Logs
               </a>
               <a
@@ -45,7 +45,7 @@ export function Render_Nav_Bar({ theme, visible }) {
       );
     } else if (theme === "light") {
       return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav id="app_navbar" className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="/">
             HallRentals
           </a>
@@ -65,10 +65,10 @@ export function Render_Nav_Bar({ theme, visible }) {
               <a className="nav-link" href="/">
                 Halls <span className="sr-only">(current)</span>
               </a>
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/pictures">
                 Pictures
               </a>
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/logs">
                 Logs
               </a>
               <a
@@ -99,7 +99,7 @@ export function Render_Nav_Bar({ theme, visible }) {
         </div>
       );
     }
-  } else if (visible === false) {
+  } else if (visible === false || visible == undefined) {
     ////////////////////////////////
     // RETURN NO NAVBAR COMPONENT //
     ////////////////////////////////
@@ -119,4 +119,59 @@ export function Render_Nav_Bar({ theme, visible }) {
       </div>
     );
   }
+}
+
+
+
+export function Render_Page_Navbar(proprieties){
+  return(
+    <nav
+    className="navbar navbar-expand-lg navbar-dark bg-dark page_navbar"
+    style={{ position: "sticky", left: 0, top: 0 }}
+  >
+    <button className="navbar-brand action_button"> Pictures + </button>
+    <button
+      className="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarScroll"
+      aria-controls="navbarScroll"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarScroll">
+      <ul
+        className="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll"
+        style={{ maxHeight: "100px" }}
+      >
+        <div className="page_selection_container">
+        <li className="nav-item active ">
+          <a className="nav-link page_label">
+            Page
+          </a>
+        </li>
+          <button className="page_selection"><p className="page_selection_arrow">&#9668;</p></button>
+          <input
+            value={proprieties.page_index}
+            className="page_input"
+          />
+          <button className="page_selection"><p className="page_selection_arrow">&#9658;</p></button>
+        </div>
+      </ul>
+      <form className="d-flex">
+        <input
+          className="form-control mr-2 custom_searchbar"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button className="btn btn-outline-success" type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  </nav>
+  );
 }

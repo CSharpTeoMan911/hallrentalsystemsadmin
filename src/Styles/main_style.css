@@ -1,5 +1,5 @@
 body.body_style {
-    background: linear-gradient(to left, rgb(100, 100, 100) 20%,  rgb(196, 194, 194) 80%);
+    background: linear-gradient(to left, rgb(31, 30, 30) 20%,  rgb(196, 194, 194) 80%);
     background: -moz-linear-gradient(to left, #535353 20%, #cfcfcf 80%);
 }
 
@@ -7,8 +7,8 @@ div.main_background_image_style {
     position: absolute;
     z-index: 0;
     background-image: url("https://images.pixexid.com/a-futuristic-city-designed-using-gothic-architecture-k4zwosr1.jpeg");
-    image-rendering: optimizeQuality;
-    opacity: 0.25;
+    image-rendering: optimizeSpeed;
+    opacity: 0.4;
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -18,9 +18,177 @@ div.auth_background_image_style {
     position: absolute;
     z-index: 0;
     background-image: url("https://ik.imagekit.io/freeflo/production/a18246a8-8491-491b-963d-fad1f060471b.png?tr=w-3840,q-75&alt=media&pr-true");
-    image-rendering: optimizeQuality;
-    opacity: 0.25;
+    image-rendering: optimizeSpeed;
+    opacity: 0.4;
     background-size: cover;
     width: 100vw;
     height: 100vh;
 }
+
+div.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 100vw;
+    height: 85vh;
+    background-color: transparent;
+}
+
+div.page_display {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    margin-top: calc(20px + 1vw);
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    overflow-y: auto;
+}
+
+
+div.page_display::-webkit-scrollbar {
+    width: 12px;               
+}
+  
+div.page_display::-webkit-scrollbar-track {
+    background: rgb(71, 71, 71);        
+}
+  
+div.page_display::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);    
+    border-radius: 20px;       
+    border: 1.5px solid rgb(177, 177, 177);  
+}
+
+
+div.page_content {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+}
+
+div.handle_style {
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(59, 59, 59);   
+}
+
+div.expandable_content {
+    align-self: center;
+    padding: 10px;
+}
+
+div.page_selection {
+    width: 100%;
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+}
+
+div.grid_section {
+    width: 50vw;
+    position: relative;
+}
+
+div.page_selection_container {
+    display:inline-flex;
+    align-content:center;
+    align-items:center;
+}
+
+nav.navbar-dark.page_navbar {
+    background: linear-gradient(to right, black, rgb(78, 78, 78));
+    background: -moz-linear-gradient(to right, black, rgb(78, 78, 78));
+}
+
+button.page_selection {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    align-self:"center";
+    justify-self:"center";
+    border-radius: 2px;
+    border-width: 0px;
+    padding: 1px;
+    background: linear-gradient(to right, rgb(56, 56, 56), rgb(78, 78, 78));
+    background: -moz-linear-gradient(to right, rgb(56, 56, 56), rgb(78, 78, 78));
+}
+
+button.page_selection:hover {
+    background: linear-gradient(to right, rgb(116, 116, 116), rgb(88, 88, 88));
+    background: -moz-linear-gradient(to right, rgb(56, 56, 56), rgb(78, 78, 78));
+}
+
+button.action_button {
+    align-self: center;
+    background:transparent;
+    border-width:0px;
+    margin-right: 40px;
+}
+
+p.page_selection_arrow {
+    padding:0px;
+    margin:0px;
+    align-self: center;
+    color: white;
+}
+
+a.page_label {
+    margin-left:5px;
+    margin-right:10px;
+    align-self:center; 
+    justify-self:center;
+}
+
+input.page_input {
+    border-radius: 2px;
+    border-width: 1px;
+    width: 30px;
+    height: 27px;
+    margin-top: 4px;
+    color: white;
+    background: linear-gradient(to right, rgb(82, 81, 81), rgb(141, 140, 140));
+    background: -moz-linear-gradient(to right, black, rgb(107, 107, 107));
+}
+
+
+.custom_searchbar.form-control {
+    background: linear-gradient(to right, rgb(82, 81, 81), rgb(141, 140, 140));
+    background: -moz-linear-gradient(to right, black, rgb(107, 107, 107));
+    border-color: white;
+    box-shadow: rgb(224, 224, 224);
+    color: white;
+}
+
+.custom_searchbar.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:rgb(221, 219, 219);
+    opacity: 1; /* Firefox */
+}
+
+.custom_searchbar.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(221, 219, 219);
+}
+
+.custom_searchbar.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(221, 219, 219);
+}
+
+.custom_searchbar.form-control:focus {
+    background: linear-gradient(to right, rgb(82, 81, 81), rgb(141, 140, 140));
+    background: -moz-linear-gradient(to right, black, rgb(107, 107, 107));
+    border-color: white;
+    box-shadow: 0 0 0 0.1rem rgb(224, 224, 224);
+    color: white;
+}
+

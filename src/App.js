@@ -26,6 +26,9 @@ function App() {
     const user_authenticated = localStorage.getItem("User Authenticated");
 
     if (user_authenticated === "True") {
+      if (window.location.pathname === "/authentication") {
+        window.location.pathname = "/";
+      }
       setAuthState(true);
     } else {
       if (window.location.pathname !== "/authentication") {
@@ -41,7 +44,7 @@ function App() {
       "main_body",
       1,
       50,
-      { r: 100, g: 100, b: 100 },
+      { r: 31, g: 30, b: 30 },
       { r: 196, g: 194, b: 194 },
       60
     );
@@ -50,7 +53,8 @@ function App() {
   Interval_Setup();
   return (
     <>
-      <Render_Background_Image is_auth={authState} />
+      <Render_Background_Image is_auth={authState}/>
+
       <Render_Nav_Bar theme={"light"} visible={authState} />
       <BrowserRouter>
         <Routes>
