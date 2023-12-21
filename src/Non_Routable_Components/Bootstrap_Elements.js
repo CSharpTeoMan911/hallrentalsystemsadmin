@@ -1,4 +1,8 @@
 import { DeAuthenticate_User } from "./Firebase/Firebase_Auth";
+import { Load_Storage_Images } from "./Firebase/Firebase_Pictures";
+import { useEffect } from "react";
+
+let page_index = 0;
 
 export function Render_Nav_Bar({ theme, visible }) {
   if (visible === true) {
@@ -65,7 +69,7 @@ export function Render_Nav_Bar({ theme, visible }) {
               <a className="nav-link" href="/">
                 Halls <span className="sr-only">(current)</span>
               </a>
-              <a className="nav-link" href="/pictures">
+              <a className="nav-link custom_active" href="/pictures">
                 Pictures
               </a>
               <a className="nav-link" href="/logs">
@@ -124,12 +128,35 @@ export function Render_Nav_Bar({ theme, visible }) {
 
 
 export function Render_Page_Navbar(proprieties){
+  useEffect(()=>{
+    //proprieties.state.setPageContent("Test");
+    console.log(proprieties.setPageContent);
+  })
+
+  Set_Page_Index(0);
+  let index = Get_Page_Index();
+  let current_style = "navbar-brand ";
+  Load_Storage_Images(0);
+
+  //proprieties.setPageContent("Test");
+
+  let action_button = undefined;
+  if (window.location.pathname === "/") {
+    action_button = "Halls\xa0\xa0\xa0+";
+    current_style += "action_button_active";
+  } else if (window.location.pathname === "/pictures") {
+    action_button = "Pictures\xa0\xa0\xa0+";
+    current_style += "action_button_active";
+  } else if (window.location.pathname === "/logs") {
+    current_style += "action_button_inactive";
+  }
+
   return(
     <nav
     className="navbar navbar-expand-lg navbar-dark bg-dark page_navbar"
     style={{ position: "sticky", left: 0, top: 0 }}
   >
-    <button className="navbar-brand action_button"> Pictures&nbsp;&nbsp;+ </button>
+    <button className={current_style}> {action_button}</button>
     <button
       className="navbar-toggler"
       type="button"
@@ -152,26 +179,68 @@ export function Render_Page_Navbar(proprieties){
             Page
           </a>
         </li>
-          <button className="page_selection"><p className="page_selection_arrow">&#9668;</p></button>
+          <button className="page_selection"><p className="page_selection_arrow" onClick={()=>{Navigate_To_Previous_Page()}}>&#9668;</p></button>
           <input
-            value={proprieties.page_index}
+            value={index}
             className="page_input"
           />
-          <button className="page_selection"><p className="page_selection_arrow">&#9658;</p></button>
+          <button className="page_selection"><p className="page_selection_arrow" onClick={()=>{Navigate_To_Next_Page();}}>&#9658;</p></button>
         </div>
       </ul>
-      <form className="d-flex">
+      <div className="d-flex">
         <input
           className="form-control mr-2 custom_searchbar"
           type="search"
           placeholder="Search"
           aria-label="Search"
         />
-        <button className="btn btn-outline-success" type="submit">
+        <button className="btn btn-outline-success" onClick={()=>{Item_Search()}}>
           Search
         </button>
-      </form>
+      </div>
     </div>
   </nav>
   );
 }
+
+function Get_Page_Index() {
+  let page_index = localStorage.getItem("page_index")
+
+  if(page_index === undefined || page_index === null) {
+    Set_Page_Index(1);
+    page_index = 1;
+  }
+
+  return page_index;
+}
+
+function Set_Page_Index(index) {
+  localStorage.setItem("page_index", index)
+}
+
+async function Navigate_To_Previous_Page() {
+  let return_value = await Load_Storage_Images(-1);
+  if(return_value !== undefined){
+    let page_index = Get_Page_Index();
+    if(page_index > 1) {
+      page_index--;
+      Set_Page_Index(page_index);
+    }
+    console.log(page_index);
+  }
+}
+
+async function Navigate_To_Next_Page() {
+  let return_value = await Load_Storage_Images(1);
+  if(return_value !== undefined){
+    let page_index = Get_Page_Index();
+    page_index++;
+    Set_Page_Index(page_index);
+    console.log(page_index);
+  }
+}
+
+function Item_Search() {
+  console.log("!!! SEARCHING !!!");
+}
+

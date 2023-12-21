@@ -110,6 +110,7 @@ div.page_selection_container {
 nav.navbar-dark.page_navbar {
     background: linear-gradient(to right, rgb(48, 48, 48), rgb(78, 78, 78));
     background: -moz-linear-gradient(to right, rgb(48, 48, 48), rgb(78, 78, 78));
+    opacity: 0.7;
 }
 
 button.page_selection {
@@ -131,11 +132,18 @@ button.page_selection:hover {
     background: -moz-linear-gradient(to right, rgb(116, 116, 116), rgb(88, 88, 88));
 }
 
-button.action_button {
+button.action_button_active {
     align-self: center;
     background:transparent;
     border-width:0px;
     margin-right: 40px;
+}
+
+button.action_button_inactive {
+    visibility: hidden;
+    background-color: transparent;
+    width: 0px;
+    height: 0px;
 }
 
 p.page_selection_arrow {
@@ -150,6 +158,10 @@ a.page_label {
     margin-right:10px;
     align-self:center; 
     justify-self:center;
+}
+
+.custom_active.link.active {
+    color: rgb(0, 0, 0);
 }
 
 input.page_input {
@@ -168,7 +180,7 @@ input.page_input {
 }
 
 .custom_searchbar.form-control {
-    background: linear-gradient(to right, rgb(82, 81, 81), rgb(141, 140, 140));
+    background: linear-gradient(to right, rgba(82, 81, 81), rgb(141, 140, 140));
     background: -moz-linear-gradient(to right, rgb(82, 81, 81), rgb(141, 140, 140));
     border-color: white;
     box-shadow: rgb(224, 224, 224);
