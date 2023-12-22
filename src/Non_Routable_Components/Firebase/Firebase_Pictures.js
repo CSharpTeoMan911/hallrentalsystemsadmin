@@ -9,7 +9,7 @@ export async function Clear_Pictures_Local_Storage_Values() {
 
 export async function Load_Storage_Images(page_index) {
     let return_value = undefined;
-    const num_res = 1;
+    const num_res = 50;
    
 
     let previous_page_tokens = await localStorage.getItem("previous_page_tokens");
