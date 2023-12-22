@@ -1,6 +1,8 @@
 import { DeAuthenticate_User } from "./Firebase/Firebase_Auth";
-import { Load_Storage_Images } from "./Firebase/Firebase_Pictures";
-import { useEffect } from "react";
+import { Load_Storage_Images, Clear_Pictures_Local_Storage_Values } from "./Firebase/Firebase_Pictures";
+import { useEffect, setState, useState } from "react";
+import { Global_States } from "./Global_States";
+import { Page_Content } from "./Page_Content";
 
 let page_index = 0;
 
@@ -8,7 +10,10 @@ export function Render_Nav_Bar({ theme, visible }) {
   if (visible === true) {
     if (theme === "dark") {
       return (
-        <nav id="app_navbar" className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav
+          id="app_navbar"
+          className="navbar navbar-expand-lg navbar-dark bg-dark"
+        >
           <a className="navbar-brand" href="#">
             HallRentals
           </a>
@@ -49,7 +54,10 @@ export function Render_Nav_Bar({ theme, visible }) {
       );
     } else if (theme === "light") {
       return (
-        <nav id="app_navbar" className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav
+          id="app_navbar"
+          className="navbar navbar-expand-lg navbar-light bg-light"
+        >
           <a className="navbar-brand" href="/">
             HallRentals
           </a>
@@ -125,20 +133,52 @@ export function Render_Nav_Bar({ theme, visible }) {
   }
 }
 
+export function Render_Page_Navbar(proprieties) {
+  const { pageContent, setPageContent } = Global_States();
+  const [pageIndex, setPageIndex] = useState(1);
+  const [ processing, setProcessing ] = useState(false);
+
+  async function Navigate_To_Previous_Pictures_Page() {
+    let return_value = await Load_Storage_Images(-1);
+    await setPageContent(return_value);
+    if (return_value !== undefined) {
+      if (pageIndex > 1) {
+        let index = pageIndex;
+        index--;
+        await setPageIndex(index);
+      }
+    }
+  }
+
+  async function Navigate_To_Current_Page() {
+    setProcessing(true);
+    if(processing === false){
+      switch(window.location.pathname){
+        case "/pictures":
+          let return_value = await Load_Storage_Images(0);
+          await setPageContent(return_value);
+          break;
+      }
+    }
+    setProcessing(false);
+  }
+
+  async function Navigate_To_Next_Pictures_Page() {
+    let return_value = await Load_Storage_Images(1);
+    await setPageContent(return_value);
+    if (return_value !== undefined) {
+      let index = pageIndex;
+      index++;
+      await setPageIndex(index);
+    }
+  }
 
 
-export function Render_Page_Navbar(proprieties){
   useEffect(()=>{
-    //proprieties.state.setPageContent("Test");
-    console.log(proprieties.setPageContent);
-  })
+    Navigate_To_Current_Page();
+  }, []);
 
-  Set_Page_Index(0);
-  let index = Get_Page_Index();
   let current_style = "navbar-brand ";
-  Load_Storage_Images(0);
-
-  //proprieties.setPageContent("Test");
 
   let action_button = undefined;
   if (window.location.pathname === "/") {
@@ -148,65 +188,105 @@ export function Render_Page_Navbar(proprieties){
     action_button = "Pictures\xa0\xa0\xa0+";
     current_style += "action_button_active";
   } else if (window.location.pathname === "/logs") {
+    action_button = "Logs\xa0\xa0\xa0";
     current_style += "action_button_inactive";
   }
 
-  return(
-    <nav
-    className="navbar navbar-expand-lg navbar-dark bg-dark page_navbar"
-    style={{ position: "sticky", left: 0, top: 0 }}
-  >
-    <button className={current_style}> {action_button}</button>
-    <button
-      className="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarScroll"
-      aria-controls="navbarScroll"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarScroll">
-      <ul
-        className="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll"
-        style={{ maxHeight: "100px" }}
+  return (
+    <div className="page_content">
+      <nav
+        className="navbar navbar-expand-lg navbar-dark bg-dark page_navbar"
+        style={{ position: "sticky", left: 0, top: 0 }}
       >
-        <div className="page_selection_container">
-        <li className="nav-item active ">
-          <a className="nav-link page_label">
-            Page
-          </a>
-        </li>
-          <button className="page_selection"><p className="page_selection_arrow" onClick={()=>{Navigate_To_Previous_Page()}}>&#9668;</p></button>
-          <input
-            value={index}
-            className="page_input"
-          />
-          <button className="page_selection"><p className="page_selection_arrow" onClick={()=>{Navigate_To_Next_Page();}}>&#9658;</p></button>
-        </div>
-      </ul>
-      <div className="d-flex">
-        <input
-          className="form-control mr-2 custom_searchbar"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button className="btn btn-outline-success" onClick={()=>{Item_Search()}}>
-          Search
+        <button className={current_style}> {action_button}</button>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
         </button>
-      </div>
+        <div className="collapse navbar-collapse" id="navbarScroll">
+          <ul
+            className="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll"
+            style={{ maxHeight: "100px" }}
+          >
+            <div className="page_selection_container">
+              <li className="nav-item active ">
+                <a className="nav-link page_label">Page</a>
+              </li>
+              <button className="page_selection">
+                <p
+                  className="page_selection_arrow"
+                  onClick={async() => {
+                    if(processing === false)
+                    {
+                      setProcessing(true);
+                      switch(window.location.pathname){
+                        case "/pictures":
+                          await Navigate_To_Previous_Pictures_Page();
+                          break;
+                      }
+                      setProcessing(false);
+                    }
+                  }}
+                >
+                  &#9668;
+                </p>
+              </button>
+              <input value={pageIndex} className="page_input" />
+              <button className="page_selection">
+                <p
+                  className="page_selection_arrow"
+                  onClick={async() => {
+                    if(processing === false)
+                    {
+                      setProcessing(true);
+                      switch(window.location.pathname){
+                        case "/pictures":
+                          await Navigate_To_Next_Pictures_Page();
+                          break;
+                      }
+                      setProcessing(false);
+                    }
+                  }}
+                >
+                  &#9658;
+                </p>
+              </button>
+            </div>
+          </ul>
+          <div className="d-flex">
+            <input
+              className="form-control mr-2 custom_searchbar"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button
+              className="btn btn-outline-success"
+              onClick={() => {
+                Item_Search();
+              }}
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </nav>
+      <Page_Content content={pageContent}/>
     </div>
-  </nav>
   );
 }
 
 function Get_Page_Index() {
-  let page_index = localStorage.getItem("page_index")
+  let page_index = localStorage.getItem("page_index");
 
-  if(page_index === undefined || page_index === null) {
+  if (page_index === undefined || page_index === null) {
     Set_Page_Index(1);
     page_index = 1;
   }
@@ -215,32 +295,9 @@ function Get_Page_Index() {
 }
 
 function Set_Page_Index(index) {
-  localStorage.setItem("page_index", index)
-}
-
-async function Navigate_To_Previous_Page() {
-  let return_value = await Load_Storage_Images(-1);
-  if(return_value !== undefined){
-    let page_index = Get_Page_Index();
-    if(page_index > 1) {
-      page_index--;
-      Set_Page_Index(page_index);
-    }
-    console.log(page_index);
-  }
-}
-
-async function Navigate_To_Next_Page() {
-  let return_value = await Load_Storage_Images(1);
-  if(return_value !== undefined){
-    let page_index = Get_Page_Index();
-    page_index++;
-    Set_Page_Index(page_index);
-    console.log(page_index);
-  }
+  localStorage.setItem("page_index", index);
 }
 
 function Item_Search() {
   console.log("!!! SEARCHING !!!");
 }
-

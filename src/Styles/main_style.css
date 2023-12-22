@@ -140,10 +140,11 @@ button.action_button_active {
 }
 
 button.action_button_inactive {
-    visibility: hidden;
-    background-color: transparent;
-    width: 0px;
-    height: 0px;
+    align-self: center;
+    background:transparent;
+    border-width:0px;
+    margin-right: 40px;
+    pointer-events: none;
 }
 
 p.page_selection_arrow {

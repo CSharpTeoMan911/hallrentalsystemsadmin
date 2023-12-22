@@ -5,6 +5,7 @@ import { Render_Authentication_Page } from "./Pages/Halls_Admin_Authentication";
 import { Render_Home_Page } from "./Pages/Halls_Admin_Home";
 import { Render_Pictures_Page } from "./Pages/Halls_Admin_Pictures"
 import { Render_Logs_Page } from "./Pages/Halls_Admin_Logs"
+import { Clear_Pictures_Local_Storage_Values } from "./Non_Routable_Components/Firebase/Firebase_Pictures";
 
 import {
   Clear_All_Intervals,
@@ -20,6 +21,7 @@ import "./Styles/main_style.css";
 
 
 function App() {
+  Clear_Pictures_Local_Storage_Values();
   const [authState, setAuthState] = useState();
 
   useEffect(() => {
