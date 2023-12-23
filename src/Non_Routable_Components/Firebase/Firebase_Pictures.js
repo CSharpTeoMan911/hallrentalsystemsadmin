@@ -118,10 +118,15 @@ async function Extract_Download_URLs(items) {
 
 export async function Insert_Storage_Image(file_name, file_bytes) {
     const file_ref = ref(firebase_storage, file_name);
-    console.log(await uploadBytes(file_ref, file_bytes));
+    await uploadBytes(file_ref, file_bytes);
 }
 
 export async function Delete_Storage_Image(img_location) {
-    await deleteObject(ref(firebase_storage, img_location));
-    return true;
+    try{
+        await deleteObject(ref(firebase_storage, img_location));
+        return true;
+    }
+    catch{
+        return false;
+    }
 }
