@@ -5,6 +5,7 @@ export const Global_States = () => {
   const [previousPageTokens, setPreviousPageTokens] = useState();
   const [currentPageToken, setCurrentPageToken] = useState();
   const [nextPageToken, setNextPageToken] = useState();
+  const [reloadComponent, setReloadComponent] = useState(false);
   return {
     pageContent,
     setPageContent,
@@ -14,5 +15,7 @@ export const Global_States = () => {
     setCurrentPageToken,
     nextPageToken,
     setNextPageToken,
+    reloadComponent,
+    setReloadComponent,
   };
 };

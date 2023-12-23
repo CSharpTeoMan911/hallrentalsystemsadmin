@@ -1,8 +1,11 @@
 import { DeAuthenticate_User } from "./Firebase/Firebase_Auth";
-import { Load_Storage_Images, Clear_Pictures_Local_Storage_Values } from "./Firebase/Firebase_Pictures";
+import {
+  Load_Storage_Images,
+  Insert_Storage_Image,
+} from "./Firebase/Firebase_Pictures";
 import { useEffect, setState, useState } from "react";
 import { Global_States } from "./Global_States";
-import { Page_Content } from "./Page_Content";
+import { Pictures_Page_Content } from "./Page_Content";
 
 let page_index = 0;
 
@@ -134,14 +137,35 @@ export function Render_Nav_Bar({ theme, visible }) {
 }
 
 export function Render_Page_Navbar(proprieties) {
+  const { reloadComponent, setReloadComponent } = Global_States();
   const { pageContent, setPageContent } = Global_States();
   const [pageIndex, setPageIndex] = useState(1);
-  const [ processing, setProcessing ] = useState(false);
+  const [processing, setProcessing] = useState(false);
+
+
+  if (reloadComponent === true) {
+    setReloadComponent(false);
+    Navigate_To_Current_Page()
+  }
+
+  async function Add_Picture() {
+    let input = document.createElement("input");
+    input.type = "file";
+    input.onchange = async(_) => {
+      var reader = new FileReader();
+      reader.onload = async (e) => {
+        await Insert_Storage_Image(input.files[0].name, reader.result);
+        setReloadComponent(true);
+      }
+      await reader.readAsArrayBuffer(input.files[0]);
+    };
+    input.click();
+  }
 
   async function Navigate_To_Previous_Pictures_Page() {
-    let return_value = await Load_Storage_Images(-1);
-    await setPageContent(return_value);
-    if (return_value !== undefined) {
+    let return_values = await Load_Storage_Images(-1);
+    await setPageContent(return_values["return_value"]);
+    if (return_values["return_value"] !== undefined) {
       if (pageIndex > 1) {
         let index = pageIndex;
         index--;
@@ -151,30 +175,27 @@ export function Render_Page_Navbar(proprieties) {
   }
 
   async function Navigate_To_Current_Page() {
-    setProcessing(true);
-    if(processing === false){
-      switch(window.location.pathname){
-        case "/pictures":
-          let return_value = await Load_Storage_Images(0);
-          await setPageContent(return_value);
-          break;
-      }
+    switch (window.location.pathname) {
+      case "/pictures":
+        let return_values = await Load_Storage_Images(0);
+        await setPageContent(return_values["return_value"]);
+        break;
     }
-    setProcessing(false);
   }
 
   async function Navigate_To_Next_Pictures_Page() {
-    let return_value = await Load_Storage_Images(1);
-    await setPageContent(return_value);
-    if (return_value !== undefined) {
-      let index = pageIndex;
-      index++;
-      await setPageIndex(index);
+    let return_values = await Load_Storage_Images(1);
+    await setPageContent(return_values["return_value"]);
+    if (return_values["return_value"] !== undefined) {
+      if (return_values["is_last"] === false) {
+        let index = pageIndex;
+        index++;
+        await setPageIndex(index);
+      }
     }
   }
 
-
-  useEffect(()=>{
+  useEffect(() => {
     Navigate_To_Current_Page();
   }, []);
 
@@ -198,7 +219,15 @@ export function Render_Page_Navbar(proprieties) {
         className="navbar navbar-expand-lg navbar-dark bg-dark page_navbar"
         style={{ position: "sticky", left: 0, top: 0 }}
       >
-        <button className={current_style}> {action_button}</button>
+        <button
+          className={current_style}
+          onClick={async () => {
+            await Add_Picture();
+          }}
+        >
+          {" "}
+          {action_button}
+        </button>
         <button
           className="navbar-toggler"
           type="button"
@@ -222,11 +251,10 @@ export function Render_Page_Navbar(proprieties) {
               <button className="page_selection">
                 <p
                   className="page_selection_arrow"
-                  onClick={async() => {
-                    if(processing === false)
-                    {
+                  onClick={async () => {
+                    if (processing === false) {
                       setProcessing(true);
-                      switch(window.location.pathname){
+                      switch (window.location.pathname) {
                         case "/pictures":
                           await Navigate_To_Previous_Pictures_Page();
                           break;
@@ -242,11 +270,10 @@ export function Render_Page_Navbar(proprieties) {
               <button className="page_selection">
                 <p
                   className="page_selection_arrow"
-                  onClick={async() => {
-                    if(processing === false)
-                    {
+                  onClick={async () => {
+                    if (processing === false) {
                       setProcessing(true);
-                      switch(window.location.pathname){
+                      switch (window.location.pathname) {
                         case "/pictures":
                           await Navigate_To_Next_Pictures_Page();
                           break;
@@ -278,24 +305,9 @@ export function Render_Page_Navbar(proprieties) {
           </div>
         </div>
       </nav>
-      <Page_Content content={pageContent}/>
+      <Pictures_Page_Content content={pageContent} state={setReloadComponent} />
     </div>
   );
-}
-
-function Get_Page_Index() {
-  let page_index = localStorage.getItem("page_index");
-
-  if (page_index === undefined || page_index === null) {
-    Set_Page_Index(1);
-    page_index = 1;
-  }
-
-  return page_index;
-}
-
-function Set_Page_Index(index) {
-  localStorage.setItem("page_index", index);
 }
 
 function Item_Search() {
