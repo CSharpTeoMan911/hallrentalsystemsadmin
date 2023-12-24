@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Render_Nav_Bar } from "./Non_Routable_Components/Pages_Sub_Components/Bootstrap_Elements";
-import Render_Background_Image from "./Non_Routable_Components/Background_Image"
+import { Render_Nav_Bar } from "./Non_Routable_Components/Pages_Sub_Components/Structural_Components/Bootstrap_Elements";
+import Render_Background_Image from "./Non_Routable_Components/Pages_Sub_Components/Structural_Components/Background_Image"
 import { Render_Authentication_Page } from "./Pages/Halls_Admin_Authentication";
 import { Render_Home_Page } from "./Pages/Halls_Admin_Home";
 import { Render_Pictures_Page } from "./Pages/Halls_Admin_Pictures"

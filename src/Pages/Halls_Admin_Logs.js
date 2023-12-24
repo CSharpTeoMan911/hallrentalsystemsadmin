@@ -1,5 +1,5 @@
 import "../Styles/logs_page_styles.css";
-import { Render_Page_Navbar } from "../Non_Routable_Components/Pages_Sub_Components/Bootstrap_Elements";
+import { Render_Page_Navbar } from "../Non_Routable_Components/Pages_Sub_Components/Structural_Components/Bootstrap_Elements";
 import { Global_States } from "../Non_Routable_Components/Global_States";
 
 export function Render_Logs_Page() {

@@ -1,4 +1,4 @@
-import "../Styles/main_style.css";
+import "../../../Styles/main_style.css";
 
 export default function Render_Background_Image(proprieties) {
   if (proprieties.is_auth === true) {

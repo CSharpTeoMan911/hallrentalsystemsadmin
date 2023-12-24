@@ -1,5 +1,5 @@
-import { Load_Storage_Images } from "../Firebase/Firebase_Pictures";
-import "../../Styles/main_style.css";
+import { Load_Storage_Images } from "../../Firebase/Firebase_Pictures";
+import "../../../Styles/main_style.css";
 
 export default function Render_Navigate_To_Previous_Page_Button(proprieties) {
   async function Navigate_To_Previous_Pictures_Page() {
@@ -21,6 +21,8 @@ export default function Render_Navigate_To_Previous_Page_Button(proprieties) {
           if (proprieties.processing === false) {
             proprieties.setProcessing(true);
             switch (window.location.pathname) {
+              case "/":
+                break;
               case "/pictures":
                 await Navigate_To_Previous_Pictures_Page();
                 break;

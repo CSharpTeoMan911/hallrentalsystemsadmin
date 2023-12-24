@@ -1,4 +1,4 @@
-import { Insert_Storage_Image } from "../Firebase/Firebase_Pictures";
+import { Insert_Storage_Image } from "../../Firebase/Firebase_Pictures";
 
 export default function Render_Add_Picture_Button(proprieties) {
   async function Add_Picture() {

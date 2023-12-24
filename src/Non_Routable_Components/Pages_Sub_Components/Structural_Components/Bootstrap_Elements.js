@@ -1,12 +1,10 @@
-import { DeAuthenticate_User } from "../Firebase/Firebase_Auth";
+import { DeAuthenticate_User } from "../../Firebase/Firebase_Auth";
 import { useEffect, useState } from "react";
-import Render_Navigate_To_Current_Page from "./Navigate_To_Current_Page";
-import Render_Add_Picture_Button from "./Add_Picture_Button";
-import Render_Navigate_To_Previous_Page_Button from "./Navigate_To_Previous_Page_Button";
-import Render_Navigate_To_Next_Page_Button from "./Navigate_To_Next_Page_Button";
-import Render_Search_Button from "./Search_Button";
-
-let page_index = 0;
+import Render_Navigate_To_Current_Page from "../Page_Controls/Navigate_To_Current_Page";
+import Render_Add_Picture_Button from "../Page_Controls/Add_Picture_Button";
+import Render_Navigate_To_Previous_Page_Button from "../Page_Controls/Navigate_To_Previous_Page_Button";
+import Render_Navigate_To_Next_Page_Button from "../Page_Controls/Navigate_To_Next_Page_Button";
+import Render_Search_Button from "../Page_Controls/Search_Button";
 
 export function Render_Nav_Bar({ theme, visible }) {
   if (visible === true) {

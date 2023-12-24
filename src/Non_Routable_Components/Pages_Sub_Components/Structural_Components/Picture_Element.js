@@ -1,5 +1,5 @@
-import "../../Styles/pictures_page_styles.css";
-import { Delete_Storage_Image } from "../Firebase/Firebase_Pictures";
+import "../../../Styles/pictures_page_styles.css";
+import { Delete_Storage_Image } from "../../Firebase/Firebase_Pictures";
 
 export default function Render_Picture_Element(content) {
     return(
