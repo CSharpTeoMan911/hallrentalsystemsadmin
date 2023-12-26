@@ -1,6 +1,6 @@
 import { Insert_Storage_Image } from "../../Firebase/Firebase_Pictures";
 
-export default function Render_Add_Picture_Button(proprieties) {
+export default function Render_Add_Item_Button(proprieties) {
   async function Add_Picture() {
     let input = document.createElement("input");
     input.type = "file";
@@ -15,11 +15,29 @@ export default function Render_Add_Picture_Button(proprieties) {
     input.click();
   }
 
+  async function Add_Hall() {
+
+    console.log(proprieties);
+    proprieties.setActivateHallAddition(true);
+    
+  }
+  
+
   return (
     <button
       className={proprieties.current_style}
       onClick={async () => {
-        await Add_Picture();
+
+        switch(window.location.pathname) {
+            case "/":
+                Add_Hall();
+                break;
+            case "/pictures":
+                await Add_Picture();
+                break;
+            case "/logs":
+                break;
+        }
       }}
     >
       {" "}

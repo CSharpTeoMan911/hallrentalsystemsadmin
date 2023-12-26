@@ -107,10 +107,17 @@ div.page_selection_container {
     align-items:center;
 }
 
+div.element_addition_container.jumbotron {
+    width: fit-content;
+    padding: 10px;
+    align-self: center;
+}
+
 nav.navbar-dark.page_navbar {
     background: linear-gradient(to right, rgb(48, 48, 48), rgb(78, 78, 78));
     background: -moz-linear-gradient(to right, rgb(48, 48, 48), rgb(78, 78, 78));
-    opacity: 0.9;
+    opacity: 0.90;
+    z-index: 1;
 }
 
 button.page_selection {

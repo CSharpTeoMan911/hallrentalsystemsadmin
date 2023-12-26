@@ -6,6 +6,8 @@ export const Global_States = () => {
   const [currentPageToken, setCurrentPageToken] = useState();
   const [nextPageToken, setNextPageToken] = useState();
   const [reloadComponent, setReloadComponent] = useState(false);
+  const [activatePictureFocus, setActivatePictureFocus] = useState(false);
+  const [activateHallAddition, setActivateHallAddition] = useState(false);
   return {
     pageContent,
     setPageContent,
@@ -17,5 +19,9 @@ export const Global_States = () => {
     setNextPageToken,
     reloadComponent,
     setReloadComponent,
+    activatePictureFocus,
+    setActivatePictureFocus,
+    activateHallAddition,
+    setActivateHallAddition,
   };
 };

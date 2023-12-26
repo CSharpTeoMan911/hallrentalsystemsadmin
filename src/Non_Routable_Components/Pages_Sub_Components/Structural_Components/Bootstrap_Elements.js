@@ -1,7 +1,7 @@
 import { DeAuthenticate_User } from "../../Firebase/Firebase_Auth";
 import { useEffect, useState } from "react";
 import Render_Navigate_To_Current_Page from "../Page_Controls/Navigate_To_Current_Page";
-import Render_Add_Picture_Button from "../Page_Controls/Add_Picture_Button";
+import Render_Add_Item_Button from "../Page_Controls/Add_Item_Button";
 import Render_Navigate_To_Previous_Page_Button from "../Page_Controls/Navigate_To_Previous_Page_Button";
 import Render_Navigate_To_Next_Page_Button from "../Page_Controls/Navigate_To_Next_Page_Button";
 import Render_Search_Button from "../Page_Controls/Search_Button";
@@ -159,13 +159,15 @@ export function Render_Page_Navbar(proprieties) {
     action_button = "Logs\xa0\xa0\xa0";
     current_style += "action_button_inactive";
   }
+  
 
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark bg-dark page_navbar"
       style={{ position: "sticky", left: 0, top: 0 }}
     >
-      <Render_Add_Picture_Button
+      <Render_Add_Item_Button
+        setActivateHallAddition ={proprieties.setActivateHallAddition}
         action_button={action_button}
         current_style={current_style}
         setReloadComponent={proprieties.setReloadComponent}

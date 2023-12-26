@@ -3,7 +3,7 @@ import { Render_Page_Navbar } from "../Non_Routable_Components/Pages_Sub_Compone
 import { Home_Page_Content } from "../Non_Routable_Components/Pages_Sub_Components/Structural_Components/Page_Content";
 import { Global_States } from "../Non_Routable_Components/Global_States";
 
-export function Render_Home_Page() {
+export function Render_Home_Page(proprieties) {
   const { reloadComponent, setReloadComponent } = Global_States();
   const { pageContent, setPageContent } = Global_States();
 
@@ -12,6 +12,7 @@ export function Render_Home_Page() {
       <div className="page_display">
         <div className="page_content">
           <Render_Page_Navbar
+            setActivateHallAddition={proprieties.setActivateHallAddition}
             reloadComponent={reloadComponent}
             setReloadComponent={setReloadComponent}
             setPageContent={setPageContent}

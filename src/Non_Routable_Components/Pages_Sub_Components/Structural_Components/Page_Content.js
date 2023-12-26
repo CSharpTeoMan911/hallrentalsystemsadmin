@@ -4,7 +4,7 @@ import { Insert_Hall } from "../../Firebase/Firebase_Halls"
 
 
 export function Home_Page_Content(parameters) {
-
+  
 }
 
 export function Pictures_Page_Content(parameters) {
