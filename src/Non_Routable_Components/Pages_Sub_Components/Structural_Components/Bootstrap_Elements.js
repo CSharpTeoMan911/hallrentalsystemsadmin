@@ -202,7 +202,7 @@ export function Render_Page_Navbar(proprieties) {
               setProcessing={setProcessing}
             />
 
-            <input value={pageIndex} className="page_input" />
+            <input value={pageIndex} onChange={()=>{}} className="page_input"/>
 
             <Render_Navigate_To_Next_Page_Button
               setPageContent={proprieties.setPageContent}
@@ -219,6 +219,7 @@ export function Render_Page_Navbar(proprieties) {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            onChange={()=>{}}
           />
 
           <Render_Search_Button />
