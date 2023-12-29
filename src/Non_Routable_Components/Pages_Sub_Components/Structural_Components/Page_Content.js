@@ -1,17 +1,20 @@
 import "../../../Styles/main_style.css";
-import Render_Pictures_Element from "./Picture_Element"
+import Render_Pictures_Element from "./Picture_Element";
 import Render_Hall_Element from "./Hall_Element";
-import { Load_Halls, Delete_Hall, Update_Hall } from "../../Firebase/Firebase_Halls"
-
 
 export function Home_Page_Content(parameters) {
   if (parameters.content !== undefined && parameters.content !== null) {
-
     let halls = [];
 
-    for (let i = 0; i < parameters.content.length; i++) {
+    let keys = Object.keys(parameters.content);
+
+    for (let i = 0; i < keys.length; i++) {
       halls.push(
-         <Render_Hall_Element image={parameters.content[i]} state={parameters.state}/>
+        <Render_Hall_Element
+          key={i}
+          values={parameters.content[keys[i]]}
+          state={parameters.state}
+        />
       );
     }
 
@@ -21,12 +24,14 @@ export function Home_Page_Content(parameters) {
 
 export function Pictures_Page_Content(parameters) {
   if (parameters.content !== undefined && parameters.content !== null) {
-
     let pictures = [];
 
     for (let i = 0; i < parameters.content.length; i++) {
       pictures.push(
-        <Render_Pictures_Element image={parameters.content[i]} state={parameters.state}/>
+        <Render_Pictures_Element
+          image={parameters.content[i]}
+          state={parameters.state}
+        />
       );
     }
 

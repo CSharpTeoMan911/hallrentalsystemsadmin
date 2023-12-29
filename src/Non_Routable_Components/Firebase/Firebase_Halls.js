@@ -1,7 +1,7 @@
 import { firebase_database } from "./Firebase_Connection";
 import { set, ref, push, get, query, orderByKey, limitToFirst, startAt} from "firebase/database";
 
-export async function Load_Halls(page_idex) {
+export async function Load_Halls(page_index) {
     const elements_per_page = 50;
 
     let return_value = undefined;
@@ -13,17 +13,17 @@ export async function Load_Halls(page_idex) {
 
 
       
-  switch (page_idex) {
+  switch (page_index) {
     case -1:
         if(previous_page_tokens !== undefined && previous_page_tokens !== null){
             if(typeof previous_page_tokens !== typeof Object){
-                previous_page_tokens = JSON.parse(previous_page_tokens);
+                previous_page_tokens = await JSON.parse(previous_page_tokens);
             }
 
 
             if(previous_page_tokens.length > 1) {
                 let current_token = previous_page_tokens.pop();
-                await localStorage.setItem("previous_page_tokens", JSON.stringify(previous_page_tokens));
+                await localStorage.setItem("previous_page_tokens", await JSON.stringify(previous_page_tokens));
                 await localStorage.setItem("current_page_token", current_token);
                 let current_page = (await get(query(ref(firebase_database, '/Halls/Hall_ID'),  orderByKey("Hall_ID"), limitToFirst(elements_per_page), startAt(current_token)))).val();
                 await localStorage.setItem("next_page_token", current_page_token);
@@ -80,7 +80,7 @@ export async function Load_Halls(page_idex) {
                 catch{
                     previous_page_tokens = [current_page_token];
                 }
-                await localStorage.setItem("previous_page_tokens", JSON.stringify(previous_page_tokens));
+                await localStorage.setItem("previous_page_tokens", await JSON.stringify(previous_page_tokens));
                 await localStorage.setItem("current_page_token", next_page_token);
                 let current_last_key = keys[keys.length - 1];
 
@@ -102,8 +102,7 @@ export async function Load_Halls(page_idex) {
         }
       break;
   }
-  console.log(previous_page_tokens);
-  console.log(return_value);
+
   return {"return_value":return_value, "is_last":is_last}
 }
 

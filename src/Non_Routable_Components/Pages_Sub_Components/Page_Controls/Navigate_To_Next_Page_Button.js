@@ -5,8 +5,8 @@ import "../../../Styles/main_style.css";
 export default function Render_Navigate_To_Next_Page_Button(proprieties) {
   async function Navigate_To_Next_Pictures_Page() {
     let return_values = await Load_Storage_Images(1);
-    await proprieties.setPageContent(return_values["return_value"]);
     if (return_values["return_value"] !== undefined) {
+      await proprieties.setPageContent(return_values["return_value"]);
       if (return_values["is_last"] === false) {
         let index = proprieties.pageIndex;
         index++;
@@ -16,9 +16,9 @@ export default function Render_Navigate_To_Next_Page_Button(proprieties) {
   }
   async function Navigate_To_Next_Halls_Page() {
     let return_values = await Load_Halls(1);
-    await proprieties.setPageContent(return_values["return_value"]);
     if (return_values["return_value"] !== undefined) {
       if (return_values["is_last"] === false) {
+        await proprieties.setPageContent(return_values["return_value"]);
         let index = proprieties.pageIndex;
         index++;
         await proprieties.setPageIndex(index);
@@ -31,7 +31,7 @@ export default function Render_Navigate_To_Next_Page_Button(proprieties) {
         className="page_selection_arrow"
         onClick={async () => {
           if (proprieties.processing === false) {
-            proprieties.setProcessing(true);
+            await proprieties.setProcessing(true);
             switch (window.location.pathname) {
               case "/":
                 await Navigate_To_Next_Halls_Page();
@@ -40,7 +40,7 @@ export default function Render_Navigate_To_Next_Page_Button(proprieties) {
                 await Navigate_To_Next_Pictures_Page();
                 break;
             }
-            proprieties.setProcessing(false);
+            await proprieties.setProcessing(false); 
           }
         }}
       >

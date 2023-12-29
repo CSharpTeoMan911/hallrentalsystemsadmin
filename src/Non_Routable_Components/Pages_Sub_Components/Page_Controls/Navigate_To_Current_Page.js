@@ -7,7 +7,7 @@ export default function Render_Navigate_To_Current_Page(proprieties) {
     switch (window.location.pathname) {
       case "/":
         return_values = await Load_Halls(0);
-        await proprieties.setPageContent();
+        await proprieties.setPageContent(return_values["return_value"]);
         break;
       case "/pictures":
         return_values = await Load_Storage_Images(0);
