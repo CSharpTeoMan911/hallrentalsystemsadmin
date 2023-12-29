@@ -48,21 +48,23 @@ export async function Load_Halls(page_index) {
         else{
             return_value = (await get(query(ref(firebase_database, '/Halls/Hall_ID'), orderByKey("Hall_ID"), limitToFirst(elements_per_page)))).val();
         }
-        let keys = Object.keys(return_value);
+        if(return_value !== null){
+          let keys = Object.keys(return_value);
 
-        let current_key = keys[0];
-        let current_last_key = keys[keys.length - 1];
-        let next_page = (await get(query(ref(firebase_database, '/Halls/Hall_ID'),  orderByKey("Hall_ID"), limitToFirst(elements_per_page), startAt(current_last_key)))).val();
-        keys = Object.keys(next_page);
-
-        await localStorage.setItem("current_page_token", current_key);
-
-        if(current_last_key === keys[keys.length - 1]) {
-            await localStorage.removeItem("next_page_token");
-            is_last = true;
-        }
-        else{
-            await localStorage.setItem("next_page_token", keys[keys.length - 1]);
+          let current_key = keys[0];
+          let current_last_key = keys[keys.length - 1];
+          let next_page = (await get(query(ref(firebase_database, '/Halls/Hall_ID'),  orderByKey("Hall_ID"), limitToFirst(elements_per_page), startAt(current_last_key)))).val();
+          keys = Object.keys(next_page);
+  
+          await localStorage.setItem("current_page_token", current_key);
+  
+          if(current_last_key === keys[keys.length - 1]) {
+              await localStorage.removeItem("next_page_token");
+              is_last = true;
+          }
+          else{
+              await localStorage.setItem("next_page_token", keys[keys.length - 1]);
+          }
         }
       break;
     case 1:

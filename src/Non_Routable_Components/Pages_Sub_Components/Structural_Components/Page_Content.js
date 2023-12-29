@@ -29,6 +29,7 @@ export function Pictures_Page_Content(parameters) {
     for (let i = 0; i < parameters.content.length; i++) {
       pictures.push(
         <Render_Pictures_Element
+          key={i}
           image={parameters.content[i]}
           state={parameters.state}
         />
