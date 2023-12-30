@@ -1,4 +1,99 @@
+@import url("../Styles/main_style.css");
+
 div.home_page {
     position: relative;
     width: 100%;
+}
+
+div.category_container {
+    margin-top: 10px;
+    display: flex;
+    align-content: center;
+    width: 100%;
+}
+
+div.hall_amenities {
+    border-radius: calc(1px + 0.2vw);
+    height: calc(100px + 1vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    scrollbar-width: 10px;
+    background: linear-gradient(to right, rgb(201, 200, 200), rgb(187, 184, 184));
+}
+
+div.hall_amenity {
+    width: 60%;
+    padding: calc(1px + 0.2vw);
+    font-size: calc(6px + 1vw);
+    font-weight: bold;
+    border-radius: calc(1px + 0.2vw);
+    margin-top: calc(1px + 1vw);
+    margin-bottom: calc(1px + 1vw);
+    word-wrap: break-word;
+    background-color: black;
+    color: white;
+    align-self: center;
+    justify-self: center;
+}
+
+div.hall_element_control {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+div.hall_control_grid_section {
+    display: flex;
+    flex-direction: column;
+}
+
+.home_page_jumbotron.jumbotron {
+    width: calc(15vw + 150px);
+    background: linear-gradient(to right, rgb(235, 234, 234), rgb(212, 211, 211));
+    border-radius: 1vw;
+    padding: 1vw;
+}
+
+h3.hall_element_name {
+    color: black;
+    font-size: calc(10px + 1.5vw);
+    align-self: center;
+    justify-self: center;
+}
+
+h4.category_label {
+    margin: 0px;
+    color: rgb(61, 61, 61);
+    font-size: calc(10px + 1vw);
+    align-self: center;
+    justify-self: center;
+}
+
+p.category_value {
+    margin: 0px;
+    color: rgb(97, 96, 96);
+    font-size: calc(10px + 1vw);
+}
+
+button.hall_element_update {
+    align-self: flex-start;
+    justify-self: center;
+    font-size:calc(10px + 1vw);
+    border-width: 0px;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+button.hall_element_deletion {
+    align-self: flex-end;
+    justify-self: center;
+    border-width: 0px;
+    background-color: transparent;
+}
+
+img.hall_element_update_img {
+    height: calc(16px + 1vw);
+    width: calc(16px + 1vw);
 }

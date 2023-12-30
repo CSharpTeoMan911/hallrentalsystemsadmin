@@ -16,10 +16,7 @@ export default function Render_Add_Item_Button(proprieties) {
   }
 
   async function Add_Hall() {
-
-    console.log(proprieties);
     proprieties.setActivateHallAddition(true);
-    
   }
   
 

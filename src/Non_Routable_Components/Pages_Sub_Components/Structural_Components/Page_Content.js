@@ -35,7 +35,7 @@ export function Pictures_Page_Content(parameters) {
         />
       );
     }
-
+    
     return <div className="expandable_content">{pictures}</div>;
   }
 }
