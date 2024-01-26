@@ -167,6 +167,7 @@ export function Render_Page_Navbar(proprieties) {
       style={{ position: "sticky", left: 0, top: 0 }}
     >
       <Render_Add_Item_Button
+        picture_selection ={proprieties.picture_selection}
         setActivateHallAddition ={proprieties.setActivateHallAddition}
         action_button={action_button}
         current_style={current_style}
@@ -195,6 +196,7 @@ export function Render_Page_Navbar(proprieties) {
             </li>
 
             <Render_Navigate_To_Previous_Page_Button
+              picture_selection ={proprieties.picture_selection}
               setPageContent={proprieties.setPageContent}
               pageIndex={pageIndex}
               setPageIndex={setPageIndex}
@@ -205,6 +207,7 @@ export function Render_Page_Navbar(proprieties) {
             <input value={pageIndex} onChange={()=>{}} className="page_input"/>
 
             <Render_Navigate_To_Next_Page_Button
+              picture_selection ={proprieties.picture_selection}
               setPageContent={proprieties.setPageContent}
               pageIndex={pageIndex}
               setPageIndex={setPageIndex}

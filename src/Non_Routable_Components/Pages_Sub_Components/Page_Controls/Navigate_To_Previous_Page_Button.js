@@ -30,17 +30,21 @@ export default function Render_Navigate_To_Previous_Page_Button(proprieties) {
       <p
         className="page_selection_arrow"
         onClick={async () => {
-          if (proprieties.processing === false) {
-            proprieties.setProcessing(true);
-            switch (window.location.pathname) {
-              case "/":
-                await Navigate_To_Previous_Halls_Page();
-                break;
-              case "/pictures":
-                await Navigate_To_Previous_Pictures_Page();
-                break;
+          if (proprieties.picture_selection === false) {
+            if (proprieties.processing === false) {
+              proprieties.setProcessing(true);
+              switch (window.location.pathname) {
+                case "/":
+                  await Navigate_To_Previous_Halls_Page();
+                  break;
+                case "/pictures":
+                  await Navigate_To_Previous_Pictures_Page();
+                  break;
+              }
+              proprieties.setProcessing(false);
             }
-            proprieties.setProcessing(false);
+          } else {
+            
           }
         }}
       >

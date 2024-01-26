@@ -18,22 +18,24 @@ export default function Render_Add_Item_Button(proprieties) {
   async function Add_Hall() {
     proprieties.setActivateHallAddition(true);
   }
-  
 
   return (
     <button
       className={proprieties.current_style}
       onClick={async () => {
-
-        switch(window.location.pathname) {
+        if (proprieties.picture_selection === false) {
+          switch (window.location.pathname) {
             case "/":
-                Add_Hall();
-                break;
+              Add_Hall();
+              break;
             case "/pictures":
-                await Add_Picture();
-                break;
+              await Add_Picture();
+              break;
             case "/logs":
-                break;
+              break;
+          }
+        } else {
+          
         }
       }}
     >

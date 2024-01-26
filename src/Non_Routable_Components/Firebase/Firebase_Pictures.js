@@ -117,12 +117,16 @@ async function Extract_Download_URLs(items) {
 
 
 export async function Insert_Storage_Image(file_name, file_bytes) {
+    // CREATE A STORAGE BUCKET NODE WITH THE SAME NAME AS THE PICTURE WE WANT TO ADD
     const file_ref = ref(firebase_storage, file_name);
+
+    // UPLOAD THE BINARY INFO OF THE PICTURE WITHIN THE NODE CREATED
     await uploadBytes(file_ref, file_bytes);
 }
 
 export async function Delete_Storage_Image(img_location) {
     try{
+        // DELETE THE FIREBASE IMAGE AT THE SPECIFIED NODE LOCATION 
         await deleteObject(ref(firebase_storage, img_location));
         return true;
     }

@@ -8,6 +8,7 @@ export const Global_States = () => {
   const [reloadComponent, setReloadComponent] = useState(false);
   const [activatePictureFocus, setActivatePictureFocus] = useState(false);
   const [activateHallAddition, setActivateHallAddition] = useState(false);
+  const [activateHallPictureSelection, setActivateHallPictureSelection] = useState(false);
   return {
     pageContent,
     setPageContent,
@@ -23,5 +24,7 @@ export const Global_States = () => {
     setActivatePictureFocus,
     activateHallAddition,
     setActivateHallAddition,
+    activateHallPictureSelection, 
+    setActivateHallPictureSelection
   };
 };

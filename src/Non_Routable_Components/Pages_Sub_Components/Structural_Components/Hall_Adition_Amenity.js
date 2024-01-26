@@ -7,7 +7,6 @@ export default function Render_Hall_Addition_Amenity(properties) {
         new_value = "Enabled";
         amenityClass = "amenity_enabled"
     }
-
     return(
         <button className={amenityClass} onClick={()=>{
             properties.setValue(value => ({

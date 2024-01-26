@@ -11,6 +11,7 @@ export function Render_Logs_Page() {
       <div className="page_display">
         <div className="page_content">
           <Render_Page_Navbar
+            picture_selection={false}
             reloadComponent={reloadComponent}
             setReloadComponent={setReloadComponent}
             setPageContent={setPageContent}

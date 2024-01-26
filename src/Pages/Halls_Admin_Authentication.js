@@ -8,12 +8,20 @@ import "../Styles/authentication_page_styles.css";
 function Email_Input_Changed() {}
 
 function Password_Input_Changed() {}
+
+// AUTHENTICATE THE ADMIN
 async function Authenticate_Admin(email_control_id, password_control_id) {
+  // RETRIEVE THE HTML ELEMENT FOR EMAIL INPUT 
   const email_input = document.getElementById(email_control_id);
+  
+  // RETRIEVE THE HTML ELEMENT FOR PASSWORD INPUT
   const password_input = document.getElementById(password_control_id);
 
+  // IF BOTH HTML ELEMENT INPUTS ARE NOT NULL
   if (email_control_id !== null && password_control_id !== null) {
     if (email_control_id !== undefined && password_control_id !== undefined) {
+      
+      // AUTHENTICATE THE USER
       var auth_result = await Authenticate_User(email_input.value, password_input.value);
       if(auth_result !== "Logged in") {
         // UI ERROR MESSAGE
@@ -24,7 +32,10 @@ async function Authenticate_Admin(email_control_id, password_control_id) {
   }
 }
 
+// RENDER THE APPLICATION'S AUTHENTICATION PAGE
 export function Render_Authentication_Page() {
+
+  // SET THE GRADIENT FLUCTUATION ANIMATIONS
   async function Interval_Setup() {
     await Unset_Gradient_Flutuation_Animation("login_form_element");
     await Set_Gradient_Flutuation_Animation(
@@ -37,6 +48,9 @@ export function Render_Authentication_Page() {
     );
   }
   Interval_Setup();
+
+
+  // CREATE THE HTML FOR THE FRONTEND  
   return (
     <div className="authentication_page">
       <div id="login_form_element" className="login_form">

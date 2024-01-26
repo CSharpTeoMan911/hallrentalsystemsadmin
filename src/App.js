@@ -17,11 +17,13 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Styles/main_style.css";
+import { Render_Picture_Selection } from "./Non_Routable_Components/Pages_Sub_Components/Structural_Components/Picture_Selection";
 
 function App() {
   const [authState, setAuthState] = useState();
   const { activatePictureFocus, setActivatePictureFocus } = Global_States();
   const { activateHallAddition, setActivateHallAddition } = Global_States();
+  const { activateHallPictureSelection, setActivateHallPictureSelection } = Global_States();
 
   useEffect(() => {
     localStorage.removeItem("previous_page_tokens");
@@ -63,7 +65,16 @@ function App() {
         <Render_Nav_Bar theme={"light"} visible={authState} />
       </>
     );
-  } else if (activateHallAddition === true) {
+  }
+  else if(activateHallPictureSelection === true){
+    return(
+    <>
+      <Render_Background_Image is_auth={authState} />
+      <Render_Picture_Selection setActivateHallPictureSelection={setActivateHallPictureSelection}/>
+    </>
+    );
+  } 
+  else if (activateHallAddition === true) {
     return (
       <>
         <Render_Background_Image is_auth={authState} />
@@ -89,6 +100,7 @@ function App() {
               Component={() => (
                 <Render_Home_Page
                   setActivateHallAddition={setActivateHallAddition}
+                  setActivateHallPictureSelection={setActivateHallPictureSelection}
                 />
               )}
             />

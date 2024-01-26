@@ -75,6 +75,7 @@ p.category_value {
     margin: 0px;
     color: rgb(97, 96, 96);
     font-size: calc(10px + 1vw);
+    word-wrap: break-word;
 }
 
 button.hall_element_update {

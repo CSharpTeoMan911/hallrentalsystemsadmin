@@ -13,7 +13,8 @@ export function Home_Page_Content(parameters) {
         <Render_Hall_Element
           key={i}
           values={parameters.content[keys[i]]}
-          state={parameters.state}
+          setReloadComponent={parameters.setReloadComponent}
+          activateHallPictureSelection={parameters.activateHallPictureSelection}
         />
       );
     }
