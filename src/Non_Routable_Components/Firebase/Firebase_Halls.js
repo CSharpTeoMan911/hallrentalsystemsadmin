@@ -282,6 +282,7 @@ export async function Insert_Hall(
 export function Update_Hall(hall_name) {}
 
 export async function Delete_Hall(hall_name) {
+  // RETRIEVE THE HALL AT THE NODE THAT HAS THE SELECTED HALL NAME
   let retrieved_hall = (
     await get(
       query(
@@ -293,9 +294,15 @@ export async function Delete_Hall(hall_name) {
     )
   ).val();
 
+  // GET THE KEY OF THE HALL
   let key = Object.keys(retrieved_hall)[0];
+
+  // SET THE LOCATION OF THE ROOT NODE
   let root_location = "/Halls/Hall_ID/";
 
+  // CONCATENATE THE ROOT LOCATION AND THE NODE
   let location = root_location + key;
+
+  // REMOVE THE SPECIDIED CHILD NODE 
   remove(ref(firebase_database, location));
 }
